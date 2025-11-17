@@ -44,7 +44,28 @@ def read_fasta(filename):
 
     try:
         # TODO: Open and parse the file
-        pass
+        with open(filename, 'r') as f:
+            current_header = None
+            current_sequence = []
+
+            for line in f:
+                line = line.strip()
+                if line.startswith('>'):
+                    # Save previous sequence if exists
+                    if current_header is not None:
+                        sequences[current_header] = ''.join(current_sequence)
+                    # Start new header
+                    current_header = line[1:]  # Remove '>'
+                    current_sequence = []
+                else:
+                    # Accumulate sequence lines
+                    current_sequence.append(line)
+
+            # Save the last sequence after the loop
+            if current_header is not None:
+                sequences[current_header] = ''.join(current_sequence)
+
+        return sequences
     except FileNotFoundError:
         print(f"Error: File '{filename}' not found!")
         return {}
@@ -64,7 +85,17 @@ def print_fasta_stats(sequences):
     # Print:
     # - Total number of sequences
     # - For each sequence: header, length, first 50 amino acids
-    pass
+    total_sequences = len(sequences)
+    print(f"Total sequences: {total_sequences}\n")
+
+    for header, seq in sequences.items():
+        seq_length = len(seq)
+        seq_preview = seq[:50]
+        print(f"Header: {header}")
+        print(f"Length: {seq_length}")
+        print(f"First 50 aa: {seq_preview}\n")
+
+    
 
 
 # Test your functions

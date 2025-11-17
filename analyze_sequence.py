@@ -40,7 +40,18 @@ def analyze_sequences(sequences):
 
     for header, sequence in sequences.items():
         # TODO: Implement analysis for each sequence
-        pass
+        seq_length = len(sequence)
+        mol_weight = sequence_utils.molecular_weight(sequence)
+        hydrophobic_count = sequence_utils.count_hydrophobic(sequence)
+        pos_charge, neg_charge = sequence_utils.count_charged_residues(sequence)
+        results[header] = {
+            'length': seq_length,
+            'molecular_weight': mol_weight,
+            'hydrophobic_count': hydrophobic_count,
+            'positive_charge': pos_charge,
+            'negative_charge': neg_charge,
+            'net_charge': pos_charge - neg_charge
+        }
 
     return results
 
@@ -72,7 +83,11 @@ def write_results(results, output_file="analysis_results.txt"):
             #   Negative charges: 15
             #   Net charge: -3
             #
-            pass
+            for header, metrics in results.items():
+                f.write(f"Sequence: {header}\n")
+                for key, value in metrics.items():
+                    f.write(f"  {key.replace('_', ' ').title()}: {value}\n")
+                f.write("\n")
 
         print(f"\nResults written to {output_file}")
 

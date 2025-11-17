@@ -1,0 +1,35 @@
+Protein Sequence Analysis Results
+======================================================================
+
+Sequence: hemoglobin_alpha_human
+  Length: 142
+  Molecular Weight: 15258.109999999997
+  Hydrophobic Count: 70
+  Positive Charge: 24
+  Negative Charge: 12
+  Net Charge: 12
+
+Sequence: >insulin_human
+  Length: 110
+  Molecular Weight: 11981.339999999993
+  Hydrophobic Count: 51
+  Positive Charge: 9
+  Negative Charge: 10
+  Net Charge: -1
+
+Sequence: >lysozyme_human
+  Length: 147
+  Molecular Weight: 16239.200000000008
+  Hydrophobic Count: 59
+  Positive Charge: 19
+  Negative Charge: 9
+  Net Charge: 10
+
+Sequence: >ubiquitin
+  Length: 76
+  Molecular Weight: 8565.16
+  Hydrophobic Count: 28
+  Positive Charge: 12
+  Negative Charge: 11
+  Net Charge: 1
+
